@@ -4,6 +4,10 @@
 [![npm downloads](https://img.shields.io/npm/dm/openstudy)](https://www.npmjs.com/package/openstudy)
 [![license](https://img.shields.io/npm/l/openstudy)](./LICENSE)
 
+```
+npm i openstudy
+```
+
 > Plugin de estudo para [OpenCode](https://opencode.ai). Transforma código em aula.
 
 ```
