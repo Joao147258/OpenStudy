@@ -1,0 +1,51 @@
+{
+  "name": "opencode-plugin-estudo",
+  "version": "1.0.0",
+  "description": "Plugin de estudo para OpenCode — parceiro de pensamento híbrido que ensina Go, C#, TypeScript e NestJS usando modelo local (DeepSeek R1) para gerar conteúdo e modelo cloud para decidir estratégia",
+  "main": "estudo/estudo.js",
+  "types": "estudo/estudo.d.ts",
+  "files": [
+    "filosofia.ts",
+    "filosofia.md",
+    "estudo/estudo.ts",
+    "estudo/perfil.json",
+    "estudo/referencias/*.md"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "estudo",
+    "aprendizado",
+    "deepseek",
+    "ollama",
+    "typescript",
+    "nestjs",
+    "csharp",
+    "golang",
+    "educacao"
+  ],
+  "author": "Joao Dantas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Joao147258/opencode-plugin-estudo"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "*",
+    "@opencode-ai/sdk": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "@types/node": "^22.0.0"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "*"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "check": "tsc --noEmit --strict"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

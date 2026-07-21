@@ -1,0 +1,13 @@
+{
+  "especialidades": ["Go", "C#", "TypeScript", "NestJS"],
+  "assuntos": [],
+  "padroes": [],
+  "preferencias": {
+    "tom": "didatico"
+  },
+  "historico": [],
+  "metricas": {
+    "chamadasLocais": 0,
+    "chamadasCloud": 0
+  }
+}
