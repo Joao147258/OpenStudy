@@ -18,13 +18,16 @@ import type { Plugin } from "@opencode-ai/plugin"
 // que o OpenCode rode em diretórios diferentes.
 import { resolve } from "node:path"
 
+import { dirname } from "node:path"
+import { fileURLToPath } from "node:url"
+
 // ─── Caminho do arquivo de filosofia ──────────────────────────────
-// Usamos import.meta.dirname para resolver o caminho relativo ao
-// próprio plugin. Isso permite que o repositório seja clonado em
-// qualquer local, sem hardcodar caminhos absolutos.
-// Bun e Node 21+ suportam import.meta.dirname nativamente.
+// Usamos fileURLToPath + dirname em vez de import.meta.dirname
+// porque o runtime do OpenCode pode não suportar import.meta.dirname
+// (disponível apenas no Node 21.2+ e Bun).
+const FILOSOFIA_DIR = dirname(fileURLToPath(import.meta.url))
 const FILOSOFIA_PATH = resolve(
-  import.meta.dirname,
+  FILOSOFIA_DIR,
   "filosofia.md"
 )
 

@@ -22,17 +22,17 @@ import {
   mkdirSync,           // Cria diretório do diário se não existir
   appendFileSync,      // Adiciona ao diário sem sobrescrever
 } from "node:fs"
-import { resolve, join } from "node:path"
+import { resolve, join, dirname } from "node:path"
+import { fileURLToPath } from "node:url"
 
 // ═══════════════════════════════════════════════════════════════════
 // CONSTANTES
 // ═══════════════════════════════════════════════════════════════════
 
-// Diretório raiz do plugin de estudo — onde perfil.json e diários vivem.
-// Usamos import.meta.dirname para resolver o caminho relativo ao
-// próprio arquivo do plugin. Isso permite que o repositório seja
-// clonado em qualquer local, sem hardcodar caminhos absolutos.
-const ESTUDO_DIR = import.meta.dirname
+// Usamos fileURLToPath + dirname em vez de import.meta.dirname
+// porque o runtime do OpenCode pode não suportar import.meta.dirname
+// (disponível apenas no Node 21.2+ e Bun).
+const ESTUDO_DIR = dirname(fileURLToPath(import.meta.url))
 
 // Perfil do usuário: assuntos vinculados, padrões de código, preferências
 // Este arquivo é o "cérebro" do plugin — acumula contexto entre sessões

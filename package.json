@@ -1,6 +1,6 @@
 {
   "name": "openstudy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OpenStudy — plugin de estudo híbrido para OpenCode. Ensina Go, C#, TypeScript e NestJS usando modelo local (DeepSeek R1 via Ollama) para gerar conteúdo didático com analogias cruzadas e modelo cloud para decidir estratégia pedagógica",
   "type": "module",
   "main": "dist/estudo/estudo.js",
