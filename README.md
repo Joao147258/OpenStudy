@@ -90,8 +90,8 @@ Fase 3: Local assume progressivamente com base no perfil
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/Joao147258/opencode-plugin-estudo.git
-cd opencode-plugin-estudo
+git clone https://github.com/Joao147258/OpenStudy.git
+cd OpenStudy
 npm install
 ```
 
@@ -103,8 +103,8 @@ Adicione no seu `~/.config/opencode/opencode.jsonc`:
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "/caminho/para/opencode-plugin-estudo/filosofia.ts",
-    "/caminho/para/opencode-plugin-estudo/estudo/estudo.ts"
+    "/caminho/para/OpenStudy/filosofia.ts",
+    "/caminho/para/OpenStudy/estudo/estudo.ts"
   ],
   "provider": {
     "ollama": {
@@ -186,7 +186,7 @@ O plugin passa a decidir sozinho quando usar o modelo local vs cloud.
 ## Estrutura do projeto
 
 ```
-opencode-plugin-estudo/
+OpenStudy/
 ├── filosofia.ts              # Plugin: injeta filosofia.md como system prompt
 ├── filosofia.md              # Regras de interação (mentor)
 ├── estudo/
