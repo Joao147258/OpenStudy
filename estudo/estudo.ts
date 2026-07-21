@@ -14,7 +14,7 @@
 //   Fase 2 — Plugin acumula perfil do usuário (assuntos, padrões)
 //   Fase 3 — Local assume progressivamente com base no perfil
 
-import type { Plugin } from "@opencode-ai/plugin"
+import type { Plugin, PluginInput, Config } from "@opencode-ai/plugin"
 import {
   readFileSync,        // Leitura síncrona de arquivo (perfil.json)
   writeFileSync,       // Escrita síncrona (salvar perfil, diário)
@@ -390,16 +390,27 @@ function montarPromptExplicacao(
 // DIÁRIO DE APRENDIZADO
 // ═══════════════════════════════════════════════════════════════════
 
+// Função auxiliar: busca o registro do dia no histórico ou cria um novo.
+// Encapsula a lógica de find+create para evitar null safety issues
+// que o TypeScript não consegue afunilar em variáveis `let`.
+function getOrCreateRegistro(perfil: Perfil, data: string): Perfil["historico"][number] {
+  const existente = perfil.historico.find((h) => h.data === data)
+  if (existente) return existente
+  const novo = { data, arquivos: [] as string[], conceitos: [] as string[] }
+  perfil.historico.push(novo)
+  return novo
+}
+
 // Gera um arquivo de diário no formato Markdown com tudo que foi
 // trabalhado na sessão atual. O diário é salvo em:
 //   estudo/aprendizado/YYYY-MM-DD.md
 function gerarDiario(perfil: Perfil): string {
   // Data de hoje no formato ISO (YYYY-MM-DD)
-  const hoje = new Date().toISOString().split("T")[0]
+  const hoje = new Date().toISOString().split("T")[0]! // !: split sempre retorna ao menos 1 elemento
   const diarioPath = join(DIARIO_DIR, `${hoje}.md`)
 
   // Busca o registro de hoje no histórico (se já foi criado)
-  const registroHoje = perfil.historico.find((h) => h.data === hoje)
+  const registroHoje = getOrCreateRegistro(perfil, hoje)
 
   // Monta o conteúdo do diário no formato Markdown
   // Cada seção é um aspecto diferente do que foi aprendido
@@ -447,7 +458,7 @@ function gerarDiario(perfil: Perfil): string {
 // PLUGIN PRINCIPAL
 // ═══════════════════════════════════════════════════════════════════
 
-export default (async (input) => {
+export default (async (input: PluginInput) => {
   // ─── Destruturação do PluginInput ──────────────────────────
   // client: SDK completo — criar sessões, ler config, subscrever eventos
   // project: informações do projeto atual
@@ -476,7 +487,7 @@ export default (async (input) => {
     // Redundante com filosofia.ts, mas garante que funcione
     // mesmo se filosofia.ts for removido.
     // async: o tipo Plugin espera Promise<void> em todos os hooks
-    async config(cfg) {
+    async config(cfg: Config) {
       cfg.instructions = cfg.instructions || []
       if (!cfg.instructions.includes(FILOSOFIA_PATH)) {
         cfg.instructions.push(FILOSOFIA_PATH)
@@ -505,12 +516,8 @@ export default (async (input) => {
           arquivosSessao.add(caminho)
 
           // Registra no histórico do perfil (hoje)
-          const hoje = new Date().toISOString().split("T")[0]
-          let registroHoje = perfil.historico.find((h) => h.data === hoje)
-          if (!registroHoje) {
-            registroHoje = { data: hoje, arquivos: [], conceitos: [] }
-            perfil.historico.push(registroHoje)
-          }
+          const hoje = new Date().toISOString().split("T")[0]! // !: split sempre retorna ao menos 1 elemento
+          const registroHoje = getOrCreateRegistro(perfil, hoje)
           if (!registroHoje.arquivos.includes(caminho)) {
             registroHoje.arquivos.push(caminho)
             salvarPerfil(perfil)
