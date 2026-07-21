@@ -1,9 +1,12 @@
 {
   "name": "openstudy",
   "version": "1.0.0",
-  "description": "OpenStudy — plugin de estudo para OpenCode. Parceiro de pensamento híbrido que ensina Go, C#, TypeScript e NestJS usando modelo local (DeepSeek R1) para gerar conteúdo e modelo cloud para decidir estratégia",
-  "main": "estudo/estudo.js",
+  "description": "OpenStudy — plugin de estudo híbrido para OpenCode. Ensina Go, C#, TypeScript e NestJS usando modelo local (DeepSeek R1 via Ollama) para gerar conteúdo didático com analogias cruzadas e modelo cloud para decidir estratégia pedagógica",
+  "main": "estudo/estudo.ts",
   "types": "estudo/estudo.d.ts",
+  "exports": {
+    ".": "./estudo/estudo.ts"
+  },
   "files": [
     "filosofia.ts",
     "filosofia.md",
@@ -14,22 +17,33 @@
   "keywords": [
     "opencode",
     "opencode-plugin",
+    "openstudy",
     "estudo",
     "aprendizado",
+    "educacao",
     "deepseek",
     "ollama",
+    "local-llm",
     "typescript",
     "nestjs",
     "csharp",
     "golang",
-    "educacao"
+    "mentor",
+    "didatica"
   ],
-  "author": "Joao Dantas",
+  "author": {
+    "name": "Joao Dantas",
+    "url": "https://github.com/Joao147258"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Joao147258/OpenStudy"
   },
+  "bugs": {
+    "url": "https://github.com/Joao147258/OpenStudy/issues"
+  },
+  "homepage": "https://github.com/Joao147258/OpenStudy#readme",
   "dependencies": {
     "@opencode-ai/plugin": "*",
     "@opencode-ai/sdk": "*"

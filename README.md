@@ -87,7 +87,23 @@ Fase 3: Local assume progressivamente com base no perfil
 
 ## Instalação
 
-### 1. Clone o repositório
+### npm (recomendado)
+
+```bash
+npm install -g openstudy
+```
+
+Depois, no seu `~/.config/opencode/opencode.jsonc`:
+
+```jsonc
+{
+  "plugin": ["openstudy"]
+}
+```
+
+O plugin já inclui a injeção da filosofia — não precisa de plugin separado.
+
+### Ou clone o repositório
 
 ```bash
 git clone https://github.com/Joao147258/OpenStudy.git
@@ -95,9 +111,17 @@ cd OpenStudy
 npm install
 ```
 
-### 2. Configure o OpenCode
+Depois referencie pelo caminho absoluto no `opencode.jsonc`:
 
-Adicione no seu `~/.config/opencode/opencode.jsonc`:
+```jsonc
+{
+  "plugin": [
+    "/caminho/para/OpenStudy/estudo/estudo.ts"
+  ]
+}
+```
+
+### Configure o provider Ollama
 
 ```jsonc
 {
