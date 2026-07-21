@@ -1,8 +1,10 @@
-# OpenCode Plugin — Estudo
+# OpenStudy
 
-Plugin de estudo para [OpenCode](https://opencode.ai) que transforma cada linha
-de código em uma aula com três camadas: técnica, filosofia e analogia com
-assuntos que você está estudando em paralelo.
+[![npm version](https://img.shields.io/npm/v/openstudy)](https://www.npmjs.com/package/openstudy)
+[![npm downloads](https://img.shields.io/npm/dm/openstudy)](https://www.npmjs.com/package/openstudy)
+[![license](https://img.shields.io/npm/l/openstudy)](./LICENSE)
+
+> Plugin de estudo para [OpenCode](https://opencode.ai). Transforma código em aula.
 
 ```
 Cloud (GPT/Claude) decide O QUE explicar
